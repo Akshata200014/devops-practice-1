@@ -2,32 +2,19 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: ./backend
+    # Replace YOUR_DOCKERHUB_USER with your actual username
+    image: YOUR_DOCKERHUB_USER/backend:latest
     container_name: django_api
     ports:
       - "8000:8000"
     environment:
       - DEBUG=1
-      - ALLOWED_HOSTS=${PUBLIC_IP}
-    networks:
-      - app-network
+      - ALLOWED_HOSTS=localhost,127.0.0.1,${PUBLIC_IP}
 
   frontend:
-    build:
-      context: ./frontend
-      args:
-        - VITE_API_URL=http://${PUBLIC_IP}:8000
+    image: YOUR_DOCKERHUB_USER/frontend:latest
     container_name: react_frontend
-    environment:
-      - VITE_API_URL=http://${PUBLIC_IP}:8000
     ports:
       - "80:80"
     depends_on:
       - backend
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
