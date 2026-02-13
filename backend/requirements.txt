@@ -1,0 +1,16 @@
+# Django Framework
+django>=5.0  # (Note: Django 6.0 is the latest/upcoming, this will grab the newest stable)
+
+# REST API Support
+djangorestframework
+markdown       # Required for DRF browsable API
+django-filter  # Filtering support
+
+# Security & CORS (Essential for React to talk to Django)
+django-cors-headers
+
+# Production Server (Commonly used in Docker)
+gunicorn
+
+# Database (If you use PostgreSQL later, keep this commented for now)
+# psycopg2-binary
