@@ -1,0 +1,16 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    # This runs directly on their new EC2
+    runs-on: self-hosted 
+    steps:
+      - name: Pull and Start Application
+        run: |
+          # No login needed because images are public!
+          sudo docker-compose pull
+          sudo docker-compose up -d --remove-orphans
+          sudo docker image prune -f

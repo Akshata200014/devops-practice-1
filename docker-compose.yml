@@ -1,15 +1,10 @@
 version: '3.8'
-
 services:
   backend:
-    # Replace YOUR_DOCKERHUB_USER with your actual username
     image: akshata14/backend:latest
     container_name: django_api
-    ports:
-      - "8000:8000"
     environment:
-      - DEBUG=1
-      - ALLOWED_HOSTS=localhost,127.0.0.1,${PUBLIC_IP}
+      - ALLOWED_HOSTS=*
 
   frontend:
     image: akshata14/frontend:latest

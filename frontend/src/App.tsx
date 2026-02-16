@@ -5,17 +5,19 @@ function App() {
   const [message, setMessage] = useState('Loading...')
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/hello/`);
-        const data = await response.json();
-        setMessage(data.message);
-      } catch (error) {
-        setMessage('Failed to connect to the backend.');
-        console.error(error);
-      }
-    };
+	 const fetchData = async () => {
+  try {
+    // 1. Just use the relative path. 
+    // The browser automatically adds the current server's IP.
+    const response = await fetch("/api/hello/");
+    
+    const data = await response.json();
+    setMessage(data.message);
+  } catch (error) {
+    setMessage('Failed to connect to the backend.');
+    console.error(error);
+  }
+};
     fetchData();
   }, [])
 
